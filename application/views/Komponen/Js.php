@@ -110,9 +110,11 @@
         var url;
 
         if (save_method == 'add') {
+            console.log('add');
             url = "<?php echo site_url('Sharing/ajax_add') ?>";
         } else {
-            <?php if ($this->session->userdata('access') == 'superadmin' && $this->session->userdata('access') == 'admin') { ?>
+            console.log('update');
+            <?php if ($this->session->userdata('access') == 'superadmin' || $this->session->userdata('access') == 'admin') { ?>
                 url = "<?php echo site_url('Sharing/ajax_update') ?>";
                 file.append('id_sharing', data.get('id_sharing'));
             <?php } ?>

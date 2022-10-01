@@ -159,4 +159,15 @@
         $('#detail').modal('show'); // show bootstrap modal
         $('.modal-title').text('Detail'); // Set Title to Bootstrap modal title
     }
+
+    const fieldJenis = $("#jenis");
+    fieldJenis.change((e) => {
+        // console.log(e.target.value);
+        let valueJenis = e.target.value;
+        if (valueJenis === "ik_visual") {
+            alert("ik_visual")
+        } else if (valueJenis === "sop") {
+            alert("sop")
+        }
+    });
 </script>

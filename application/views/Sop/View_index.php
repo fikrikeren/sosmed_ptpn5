@@ -139,7 +139,6 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">File</label>
                             <div class="col-md-9">
-
                                 <input id="file" name="userfile" placeholder="file" class="form-control" type="file">
                                 <span class="help-block"></span>
                             </div>
@@ -148,7 +147,6 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">Gambar</label>
                             <div class="col-md-9">
-
                                 <input id="gambar" name="usergambar" placeholder="file" class="form-control" type="file">
                                 <span class="help-block"></span>
                             </div>

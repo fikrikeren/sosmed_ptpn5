@@ -12,7 +12,7 @@ class Sharing extends CI_Controller
             redirect($url);
         };
 
-        $config['upload_path']          = './Uploads/';
+        $config['upload_path']          = './Uploads/sharing';
         $config['allowed_types'] = 'pdf|docx|xls|ppt|PDF|gif|jpg|png';
 
         $this->load->library('upload', $config);
@@ -75,7 +75,7 @@ class Sharing extends CI_Controller
 
             $sharing = $this->Msharing->get_by_id($this->input->post('id_sharing'));
 
-            $path = './Uploads/' . $sharing->gambar;
+            $path = './Uploads/sharing' . $sharing->gambar;
 
             if (file_exists($path)) {
                 unlink($path);
@@ -98,7 +98,7 @@ class Sharing extends CI_Controller
 
             $sharing = $this->Msharing->get_by_id($this->input->post('id_sharing'));
 
-            $path = './Uploads/' . $sharing->file;
+            $path = './Uploads/sharing' . $sharing->file;
 
             if (file_exists($path)) {
                 unlink($path);
@@ -193,13 +193,13 @@ class Sharing extends CI_Controller
 
         // $path_file = './Uploads/data_sharing/' . $sharing->file;
         // $path_gambar = './Uploads/data_sharing/' . $sharing->gambar;
-        $path_file = './Uploads/' . $sharing->file;
-        $path_gambar = './Uploads/' . $sharing->gambar;
+        $path_file = './Uploads/sharing/' . $sharing->file;
+        $path_gambar = './Uploads/sharing/' . $sharing->gambar;
 
-        if (file_exists($path_file)) {
+        if ($sharing->file != null && file_exists($path_file)) {
             unlink($path_file);
         }
-        if (file_exists($path_gambar)) {
+        if ($sharing->gambar != null && file_exists($path_gambar)) {
             unlink($path_gambar);
         }
 

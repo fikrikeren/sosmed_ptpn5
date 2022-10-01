@@ -1,5 +1,6 @@
 <?php $this->load->view("Komponen/Header") ?>
 <?php $this->load->view("Komponen/Navbar") ?>
+
 <!-- partial -->
 <div class="main-panel">
     <div class="content-wrapper">
@@ -40,13 +41,13 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="table-responsive">
-                                    <h3>SOP Data</h3>
+                                    <h3>Sop Data</h3>
                                     <br />
                                     <button class="btn btn-success" onclick="add_sop()"><i class="glyphicon glyphicon-plus"></i> Add sop</button>
-                                    <button class="btn btn-default" onclick="myreload_table()"><i class="glyphicon glyphicon-refresh"></i> Reload</button>
+                                    <button class="btn btn-default" onclick="reload_table()"><i class="glyphicon glyphicon-refresh"></i> Reload</button>
                                     <br />
                                     <br />
-                                    <table id="mytable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                    <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>Judul</th>
@@ -82,16 +83,16 @@
 
 
 <!-- Bootstrap modal -->
-<div class="modal fade" id="mymodal_form" role="dialog">
+<div class="modal fade" id="modal_form" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title">From sop</h3>
+                <h3 class="modal-title">From Sop</h3>
             </div>
             <div class="modal-body form">
-                <form action="#" id="myform" class="form-horizontal">
-                    <input id="id_sop" type="hidden" name="id_sop" />
+                <form action="#" id="form" class="form-horizontal">
+                    <input id="id_sharing" type="hidden" name="id_sharing" />
                     <div class="form-body">
                         <div class="form-group">
                             <label class="control-label col-md-3">Judul</label>
@@ -100,15 +101,19 @@
                                 <span class="help-block"></span>
                             </div>
                         </div>
+                        <!-- Jenis -->
                         <div class="form-group">
-                            <label class="control-label col-md-3">Keterangan</label>
+                            <label class="control-label col-md-3">Jenis</label>
                             <div class="col-md-9">
-                                <textarea id="keterangan" name="keterangan" placeholder="keteranagn" class="form-control" style="display: block">
-
-                                </textarea>
+                                <select id="jenis" name="jenis" class="form-control">
+                                    <option value="-" disabled>Pilih Jenis SOP</option>
+                                    <option value="sop" selected="selected">SOP</option>
+                                    <option value="ik_visual">IK Visual</option>
+                                </select>
                                 <span class="help-block"></span>
                             </div>
                         </div>
+                        <!-- Kategori -->
                         <div class="form-group">
                             <label class="control-label col-md-3">Kategori</label>
                             <div class="col-md-9">
@@ -121,14 +126,16 @@
                                 <span class="help-block"></span>
                             </div>
                         </div>
+                        <!-- Keterangan -->
                         <div class="form-group">
-                            <label class="control-label col-md-3">Gambar</label>
+                            <label class="control-label col-md-3">Keterangan</label>
                             <div class="col-md-9">
-
-                                <input id="gambar" name="usergambar" placeholder="file" class="form-control" type="file">
+                                <textarea id="keterangan" name="keterangan" placeholder="keteranagn" class="form-control" style="display: block">
+                                </textarea>
                                 <span class="help-block"></span>
                             </div>
                         </div>
+                        <!-- File -->
                         <div class="form-group">
                             <label class="control-label col-md-3">File</label>
                             <div class="col-md-9">
@@ -137,11 +144,20 @@
                                 <span class="help-block"></span>
                             </div>
                         </div>
+                        <!-- Gambar -->
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Gambar</label>
+                            <div class="col-md-9">
+
+                                <input id="gambar" name="usergambar" placeholder="file" class="form-control" type="file">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnSave" onclick="mysave();" class="btn btn-primary">Save</button>
+                <button type="button" id="btnSave" onclick="save();" class="btn btn-primary">Save</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
         </div><!-- /.modal-content -->
@@ -154,7 +170,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title">From sop</h3>
+                <h3 class="modal-title">From Sharing</h3>
             </div>
             <h1>detail</h1>
         </div><!-- /.modal-content -->
@@ -164,3 +180,4 @@
 
 
 <?php $this->load->view("Komponen/Js") ?>
+<?php $this->load->view("Komponen/Ajax_sop") ?>

@@ -162,5 +162,5 @@
 </div>
 
 
-
 <?php $this->load->view("Komponen/Js") ?>
+<?php $this->load->view("Komponen/Ajax_sharing") ?>

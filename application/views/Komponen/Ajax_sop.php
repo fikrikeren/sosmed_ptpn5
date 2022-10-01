@@ -165,9 +165,15 @@
         // console.log(e.target.value);
         let valueJenis = e.target.value;
         if (valueJenis === "ik_visual") {
-            alert("ik_visual")
+            $("#field_gambar").removeClass("d-none")
+            $("#field_alamat").removeClass("d-none")
+            $("#field_file").addClass("d-none")
+            // alert("ik_visual")
         } else if (valueJenis === "sop") {
-            alert("sop")
+            $("#field_file").removeClass("d-none")
+            $("#field_gambar").addClass("d-none")
+            $("#field_alamat").addClass("d-none")
+            // alert("sop")
         }
     });
 </script>

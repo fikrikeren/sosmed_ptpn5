@@ -94,6 +94,7 @@
                 <form action="#" id="form" class="form-horizontal">
                     <input id="id_sharing" type="hidden" name="id_sharing" />
                     <div class="form-body">
+                        <!-- Judul -->
                         <div class="form-group">
                             <label class="control-label col-md-3">Judul</label>
                             <div class="col-md-9">
@@ -106,8 +107,8 @@
                             <label class="control-label col-md-3">Jenis</label>
                             <div class="col-md-9">
                                 <select id="jenis" name="jenis" class="form-control">
-                                    <option value="-" disabled>Pilih Jenis SOP</option>
-                                    <option value="sop" selected="selected">SOP</option>
+                                    <option disabled>Pilih Jenis SOP</option>
+                                    <option value="sop"  selected="selected">SOP</option>
                                     <option value="ik_visual">IK Visual</option>
                                 </select>
                                 <span class="help-block"></span>
@@ -126,17 +127,16 @@
                                 <span class="help-block"></span>
                             </div>
                         </div>
-                        <!-- Keterangan -->
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Keterangan</label>
+                        <!-- Alamat -->
+                        <div id="field_alamat" class="form-group d-none">
+                            <label class="control-label col-md-3">Alamat</label>
                             <div class="col-md-9">
-                                <textarea id="keterangan" name="keterangan" placeholder="keteranagn" class="form-control" style="display: block">
-                                </textarea>
+                                <input id="alamat" name="alamat" placeholder="alamat" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <!-- File -->
-                        <div class="form-group">
+                        <div id="field_file" class="form-group">
                             <label class="control-label col-md-3">File</label>
                             <div class="col-md-9">
                                 <input id="file" name="userfile" placeholder="file" class="form-control" type="file">
@@ -144,10 +144,19 @@
                             </div>
                         </div>
                         <!-- Gambar -->
-                        <div class="form-group">
+                        <div id="field_gambar" class="form-group d-none">
                             <label class="control-label col-md-3">Gambar</label>
                             <div class="col-md-9">
                                 <input id="gambar" name="usergambar" placeholder="file" class="form-control" type="file">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <!-- Keterangan -->
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Keterangan</label>
+                            <div class="col-md-9">
+                                <textarea id="keterangan" name="keterangan" placeholder="keteranagn" class="form-control" style="display: block">
+                                </textarea>
                                 <span class="help-block"></span>
                             </div>
                         </div>

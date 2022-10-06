@@ -16,7 +16,7 @@ class Mik_visual extends CI_Model
     {
 
         $this->db->from($this->table);
-        $this->db->select('*');
+        $this->db->select('ik_visual.*, kategorisop.nama_kategori, user.nama');
         $this->db->join('user', 'ik_visual.sap = user.sap', 'left');
         $this->db->join('kategorisop', 'ik_visual.id_kategori = kategorisop.id_kategori', 'left');
         // $this->db->join('ik_visual', 'ik_visual.id_kategori = kategori.id_kategori', 'left outer');
@@ -26,7 +26,6 @@ class Mik_visual extends CI_Model
         {
             if ($_POST['search']['value']) // if datatable send POST for search
             {
-
                 if ($i === 0) // first loop
                 {
                     $this->db->group_start(); // open bracket. query Where with OR clause better with bracket. because maybe can combine with other WHERE with AND.
@@ -89,14 +88,15 @@ class Mik_visual extends CI_Model
 
     public function update($where, $data)
     {
-
+        // var_dump($this->table, $data, $where);
+        // die();
         $this->db->update($this->table, $data, $where);
         return $this->db->affected_rows();
     }
 
     public function delete_by_id($id)
     {
-        $this->db->where('id_sop', $id);
+        $this->db->where('id_ik', $id);
         $this->db->delete($this->table);
     }
 }

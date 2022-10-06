@@ -84,7 +84,7 @@
         // ajax adding data to database
         let formdata = document.querySelector('#form');
         let data = new FormData(formdata);
-        console.log(data)
+        // console.log(data)
         let file = new FormData();
 
         var url;

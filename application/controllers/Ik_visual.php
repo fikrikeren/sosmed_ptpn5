@@ -30,7 +30,6 @@ class Ik_visual extends CI_Controller
     {
         $list = $this->Mik_visual->get_datatables();
 
-
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $data_ikvisual) {
@@ -38,7 +37,7 @@ class Ik_visual extends CI_Controller
             $row = array();
             $row[] = $data_ikvisual->judul;
             $row[] = $data_ikvisual->alamat;
-            $row[] = $data_ikvisual->thumbnail;
+            $row[] = $data_ikvisual->nama;
             $row[] = $data_ikvisual->sap;
             $row[] = $data_ikvisual->waktu;
             $row[] = $data_ikvisual->kodeunit;
@@ -73,11 +72,11 @@ class Ik_visual extends CI_Controller
 
         // $this->load->library('upload', $config);
 
-        if ($this->input->post('id_sop')) {
+        if ($this->input->post('id_ik')) {
 
-            $sop = $this->Mik_visual->get_by_id($this->input->post('id_sop'));
+            $sop = $this->Mik_visual->get_by_id($this->input->post('id_ik'));
 
-            $path = './Uploads/sop/' . $sop->gambar;
+            $path = './Uploads/sop/' . $sop->thumbnail;
 
             if (file_exists($path)) {
                 unlink($path);
@@ -153,7 +152,6 @@ class Ik_visual extends CI_Controller
 
         $gambar = $this->do_gambar();
 
-
         $data = array(
             'judul' => $this->input->post('judul'),
             'alamat' => $this->input->post('alamat'),
@@ -161,8 +159,6 @@ class Ik_visual extends CI_Controller
             'thumbnail'  => $gambar,
             'id_kategori' => $this->input->post('kategori'),
         );
-        // var_dump($data);
-        // die;
 
         $this->Mik_visual->update(array('id_ik' => $this->input->post('id_ik')), $data);
 
@@ -176,16 +172,14 @@ class Ik_visual extends CI_Controller
         if ($sop->sap !== $this->session->get_userdata('user')['user']) {
             header('Content-Type: application/json');
             echo json_encode(array("status" => FALSE, "massage" => "bukan data anda"));
-
             return;
         };
 
-
         // $path_file = './Uploads/data_ikvisual/' . $sop->file;
         // $path_gambar = './Uploads/data_ikvisual/' . $sop->gambar;
-        $path_gambar = './Uploads/sop/' . $sop->gambar;
+        $path_gambar = './Uploads/sop/' . $sop->thumbnail;
 
-        if ($sop->gambar != null && file_exists($path_gambar)) {
+        if ($sop->thumbnail != null && file_exists($path_gambar)) {
             unlink($path_gambar);
         }
 

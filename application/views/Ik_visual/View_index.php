@@ -94,7 +94,7 @@
             </div>
             <div class="modal-body form">
                 <form action="#" id="form" class="form-horizontal">
-                    <input id="id_sharing" type="hidden" name="id_sharing" />
+                    <input id="id_ik" type="hidden" name="id_ik" />
                     <div class="form-body">
                         <!-- Judul -->
                         <div class="form-group">

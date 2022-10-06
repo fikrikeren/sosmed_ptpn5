@@ -140,6 +140,9 @@
                 type: "POST",
                 dataType: "JSON",
                 success: function(data) {
+                    if (data.status == false) {
+                        alert(data.massage);
+                    }
                     //if success reload ajax table
                     $('#modal_form').modal('hide');
                     reload_table();

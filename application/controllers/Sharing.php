@@ -191,6 +191,13 @@ class Sharing extends CI_Controller
     {
         $sharing = $this->Msharing->get_by_id($id);
 
+        if ($sharing->sap !== $this->session->get_userdata('user')['user']) {
+            header('Content-Type: application/json');
+            echo json_encode(array("status" => FALSE, "massage" => "bukan data anda"));
+
+            return;
+        };
+
         // $path_file = './Uploads/data_sharing/' . $sharing->file;
         // $path_gambar = './Uploads/data_sharing/' . $sharing->gambar;
         $path_file = './Uploads/sharing/' . $sharing->file;

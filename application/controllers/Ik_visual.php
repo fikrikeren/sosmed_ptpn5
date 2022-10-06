@@ -1,19 +1,19 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Sop extends CI_Controller
+class Ik_visual extends CI_Controller
 {
     function __construct()
     {
         parent::__construct();
-        $this->load->model('Msop');
+        $this->load->model('Mik_visual');
         if ($this->session->userdata('logged') != TRUE) {
             $url = base_url('login');
             redirect($url);
         };
 
         $config['upload_path']          = './Uploads/sop/';
-        $config['allowed_types'] = 'pdf|docx|xls|ppt|PDF|gif|jpg|png';
+        $config['allowed_types'] = 'gif|jpg|png';
 
         $this->load->library('upload', $config);
     }
@@ -23,32 +23,33 @@ class Sop extends CI_Controller
         $this->db->from('kategorisop');
         $this->db->select('*');
         $query = $this->db->get()->result();
-        $this->load->view('sop/view_index', compact('query'));
+        $this->load->view('Ik_visual/view_index', compact('query'));
     }
 
     public function ajax_list()
     {
-        $list = $this->Msop->get_datatables();
+        $list = $this->Mik_visual->get_datatables();
 
 
         $data = array();
         $no = $_POST['start'];
-        foreach ($list as $datasop) {
+        foreach ($list as $data_ikvisual) {
             $no++;
             $row = array();
-            $row[] = $datasop->judul;
-            $row[] = $datasop->keterangan;
-            $row[] = $datasop->nama;
-            $row[] = $datasop->nama_kategori;
-            $row[] = $datasop->waktu;
+            $row[] = $data_ikvisual->judul;
+            $row[] = $data_ikvisual->alamat;
+            $row[] = $data_ikvisual->thumbnail;
+            $row[] = $data_ikvisual->sap;
+            $row[] = $data_ikvisual->waktu;
+            $row[] = $data_ikvisual->kodeunit;
 
             //add html for action
             $action = '';
             if ($this->session->userdata('access') == 'superadmin' || $this->session->userdata('access') == 'admin') {
-                $action .= '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_sop(' . "'" . $datasop->id_sop . "'" . ')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
+                $action .= '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_Ik_visual(' . "'" . $data_ikvisual->id_ik . "'" . ')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
             }
-            $action .= '<a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="Delete_sop(' . "'" . $datasop->id_sop . "'" . ')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
-            $action .= '<a class="btn btn-sm btn-warning" href="javascript:void(0)" title="Detail" onclick="detail_sop(' . "'" . $datasop->id_sop . "'" . ')"><i class="glyphicon glyphicon-trash"></i> Detail</a>';
+            $action .= '<a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="Delete_Ik_visual(' . "'" . $data_ikvisual->id_ik . "'" . ')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+            $action .= '<a class="btn btn-sm btn-warning" href="javascript:void(0)" title="Detail" onclick="detail_Ik_visual(' . "'" . $data_ikvisual->id_ik . "'" . ')"><i class="glyphicon glyphicon-trash"></i> Detail</a>';
 
             $row[] = $action;
 
@@ -57,8 +58,8 @@ class Sop extends CI_Controller
 
         $output = array(
             "draw" => $_POST['draw'],
-            "recordsTotal" => $this->Msop->count_all(),
-            "recordsFiltered" => $this->Msop->count_filtered(),
+            "recordsTotal" => $this->Mik_visual->count_all(),
+            "recordsFiltered" => $this->Mik_visual->count_filtered(),
             "data" => $data,
         );
         // output to json format
@@ -74,7 +75,7 @@ class Sop extends CI_Controller
 
         if ($this->input->post('id_sop')) {
 
-            $sop = $this->Msop->get_by_id($this->input->post('id_sop'));
+            $sop = $this->Mik_visual->get_by_id($this->input->post('id_sop'));
 
             $path = './Uploads/sop/' . $sop->gambar;
 
@@ -94,29 +95,7 @@ class Sop extends CI_Controller
         }
     }
 
-    private function do_file()
-    {
-        if ($this->input->post('id_sop')) {
 
-            $sop = $this->Msop->get_by_id($this->input->post('id_sop'));
-
-            $path = './Uploads/sop/' . $sop->file;
-
-            if (file_exists($path)) {
-                unlink($path);
-            }
-        }
-
-        if (!$this->upload->do_upload('userfile')) {
-            $error = array('error' => $this->upload->display_errors());
-            return false;
-        } else {
-            // $data = array('upload_data' => $this->upload->data('userfile'));
-            $data = $this->upload->data('file_name');
-            // $namefile = $data['file_name'];
-            return $data;
-        }
-    }
 
     public function ajax_edit($id)
     {
@@ -133,7 +112,7 @@ class Sop extends CI_Controller
             return;
         };
 
-        $data = $this->Msop->get_by_id($id);
+        $data = $this->Mik_visual->get_by_id($id);
 
         echo json_encode($data);
     }
@@ -141,20 +120,19 @@ class Sop extends CI_Controller
     public function ajax_add()
     {
 
-        $file = $this->do_file();
         $gambar = $this->do_gambar();
 
         $data = array(
             'judul' => $this->input->post('judul'),
-            'keterangan' => $this->input->post('keterangan'),
+            'alamat' => $this->input->post('alamat'),
+            // 'keterangan' => $this->input->post('keterangan'),
             'sap' => $this->session->get_userdata('user')['user'],
-            'gambar' => $gambar,
-            'file' => $file,
+            'thumbnail' => $gambar,
             'id_kategori' => $this->input->post('kategori'),
         );
 
         header('Content-Type: application/json');
-        if ($this->Msop->save($data)) {
+        if ($this->Mik_visual->save($data)) {
             echo json_encode(array("status" => TRUE));
         } else {
             echo json_encode(array("status" => FALSE));
@@ -163,6 +141,7 @@ class Sop extends CI_Controller
 
     public function ajax_update()
     {
+
         if ($this->session->userdata('access') != 'superadmin' && $this->session->userdata('access') != 'admin') {
             $url = base_url('sop');
             // var_dump($url);
@@ -172,18 +151,20 @@ class Sop extends CI_Controller
             return;
         };
 
-        $file = $this->do_file();
         $gambar = $this->do_gambar();
+
 
         $data = array(
             'judul' => $this->input->post('judul'),
-            'keterangan' => $this->input->post('keterangan'),
-            'gambar'  => $gambar,
-            'file'  => $file,
+            'alamat' => $this->input->post('alamat'),
+            // 'keterangan' => $this->input->post('keterangan'),
+            'thumbnail'  => $gambar,
             'id_kategori' => $this->input->post('kategori'),
-
         );
-        $this->Msop->update(array('id_sop' => $this->input->post('id_sop')), $data);
+        // var_dump($data);
+        // die;
+
+        $this->Mik_visual->update(array('id_ik' => $this->input->post('id_ik')), $data);
 
         header('Content-Type: application/json');
         echo  json_encode(array("status" => TRUE));
@@ -191,7 +172,7 @@ class Sop extends CI_Controller
 
     public function ajax_delete($id)
     {
-        $sop = $this->Msop->get_by_id($id);
+        $sop = $this->Mik_visual->get_by_id($id);
         if ($sop->sap !== $this->session->get_userdata('user')['user']) {
             header('Content-Type: application/json');
             echo json_encode(array("status" => FALSE, "massage" => "bukan data anda"));
@@ -200,21 +181,15 @@ class Sop extends CI_Controller
         };
 
 
-        // $path_file = './Uploads/datasop/' . $sop->file;
-        // $path_gambar = './Uploads/datasop/' . $sop->gambar;
-        $path_file = './Uploads/sop/' .  $sop->file;
+        // $path_file = './Uploads/data_ikvisual/' . $sop->file;
+        // $path_gambar = './Uploads/data_ikvisual/' . $sop->gambar;
         $path_gambar = './Uploads/sop/' . $sop->gambar;
-
-
-        if ($sop->file != null && file_exists($path_file)) {
-            unlink($path_file);
-        }
 
         if ($sop->gambar != null && file_exists($path_gambar)) {
             unlink($path_gambar);
         }
 
-        $this->Msop->delete_by_id($id);
+        $this->Mik_visual->delete_by_id($id);
 
         header('Content-Type: application/json');
         echo json_encode(array("status" => TRUE));

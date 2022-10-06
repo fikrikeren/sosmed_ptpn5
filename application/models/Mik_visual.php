@@ -4,12 +4,12 @@ use LDAP\Result;
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Msop extends CI_Model
+class Mik_visual extends CI_Model
 {
 
-    var $table = 'sop';
-    var $column_order = array(null, 'judul', 'keterangan', 'tags', 'gambar', 'file', 'id_kategori', 'waktu', 'status'); //set column field database for datatable orderable
-    var $column_search = array('judul', 'keterangan', 'tags', 'gambar', 'file', 'waktu', 'status'); //set column field database for datatable searchable 
+    var $table = 'ik_visual';
+    var $column_order = array(null, 'judul',  'id_kategori', 'alamat', 'thumbnail', 'waktu', 'kodeunit'); //set column field database for datatable orderable
+    var $column_search = array('judul',  'id_kategori', 'alamat', 'thumbnail', 'waktu', 'kodeunit'); //set column field database for datatable searchable 
     var $order = array('judul' => 'asc'); // default order 
 
     private function _get_datatables_query()
@@ -17,8 +17,8 @@ class Msop extends CI_Model
 
         $this->db->from($this->table);
         $this->db->select('*');
-        $this->db->join('user', 'sop.sap = user.sap', 'left');
-        $this->db->join('kategorisop', 'sop.id_kategori = kategorisop.id_kategori', 'left');
+        $this->db->join('user', 'ik_visual.sap = user.sap', 'left');
+        $this->db->join('kategorisop', 'ik_visual.id_kategori = kategorisop.id_kategori', 'left');
         // $this->db->join('ik_visual', 'ik_visual.id_kategori = kategori.id_kategori', 'left outer');
         $i = 0;
 
@@ -75,7 +75,7 @@ class Msop extends CI_Model
     public function get_by_id($id)
     {
         $this->db->from($this->table);
-        $this->db->where('id_sop', $id);
+        $this->db->where('id_ik', $id);
         $query = $this->db->get();
 
         return $query->row();

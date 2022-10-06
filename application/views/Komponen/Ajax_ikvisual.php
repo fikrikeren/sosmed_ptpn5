@@ -1,4 +1,4 @@
-<!-- sharing -->
+<!-- Ik_visual -->
 <script type="text/javascript">
     var save_method; //for save method string
     var table;
@@ -14,7 +14,7 @@
 
             // Load data for the table's content from an Ajax source
             "ajax": {
-                "url": "<?php echo site_url('Sharing/ajax_list') ?>",
+                "url": "<?php echo site_url('Ik_visual/ajax_list') ?>",
                 "type": "POST"
             },
 
@@ -29,18 +29,18 @@
     });
 
 
-    function add_sharing() {
+    function add_Ik_visual() {
         save_method = 'add';
         $('#form')[0].reset(); // reset form on modals
         $('.form-group').removeClass('has-error'); // clear error class
         $('.help-block').empty(); // clear error string
         $('#modal_form').modal('show'); // show bootstrap modal
-        $('.modal-title').text('Add sharing'); // Set Title to Bootstrap modal title
+        $('.modal-title').text('Add ikvisual'); // Set Title to Bootstrap modal title
     }
 
     <?php if ($this->session->userdata('access') == 'superadmin' || $this->session->userdata('access') == 'admin') { ?>
 
-        function edit_sharing(id) {
+        function edit_Ik_visual(id) {
             save_method = 'update';
             $('#form')[0].reset(); // reset form on modals
             $('.form-group').removeClass('has-error'); // clear error class
@@ -50,19 +50,20 @@
 
             //Ajax Load data from ajax
             $.ajax({
-                url: "<?php echo site_url('Sharing/ajax_edit/') ?>/" + id,
+                url: "<?php echo site_url('Ik_visual/ajax_edit/') ?>/" + id,
                 type: "GET",
                 dataType: "JSON",
                 success: function(data) {
 
-                    $('#id_sharing').val(data.id_sharing)
+                    $('#id_ik').val(data.id_ik)
                     $('#judul').val(data.judul)
-                    $('#keterangan').val(data.keterangan)
+                    $('#alamat').val(data.alamat)
+                    // $('#keterangan').val(data.keterangan)
                     $('#kategori').val(data.id_kategori)
                     $('#gambar').val(data.gambar)
-                    $('#file').val(data.file)
+                    // $('#file').val(data.file)
                     $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
-                    $('.modal-title').text('Edit sharing'); // Set title to Bootstrap modal title
+                    $('.modal-title').text('Edit Ik_visual'); // Set title to Bootstrap modal title
 
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
@@ -83,27 +84,29 @@
         // ajax adding data to database
         let formdata = document.querySelector('#form');
         let data = new FormData(formdata);
+        console.log(data)
         let file = new FormData();
 
         var url;
 
         if (save_method == 'add') {
 
-            url = "<?php echo site_url('Sharing/ajax_add') ?>";
+            url = "<?php echo site_url('Ik_visual/ajax_add') ?>";
         } else {
 
             <?php if ($this->session->userdata('access') == 'superadmin' || $this->session->userdata('access') == 'admin') { ?>
-                url = "<?php echo site_url('Sharing/ajax_update') ?>";
-                file.append('id_sharing', data.get('id_sharing'));
+                url = "<?php echo site_url('Ik_visual/ajax_update') ?>";
+                file.append('id_ik', data.get('id_ik'));
             <?php } ?>
         }
 
 
 
         file.append('judul', data.get('judul'));
-        file.append('keterangan', data.get('keterangan'));
+        file.append('alamat', data.get('alamat'));
+        // file.append('keterangan', data.get('keterangan'));
         file.append('kategori', data.get('kategori'));
-        file.append('userfile', data.get('userfile'));
+        // file.append('userfile', data.get('userfile'));
         file.append('usergambar', data.get('usergambar'));
 
         $.ajax({
@@ -132,11 +135,11 @@
         });
     }
 
-    function Delete_Sharing(id) {
+    function Delete_Ik_visual(id) {
         if (confirm('apakah di hapus?')) {
             // ajax delete data to database
             $.ajax({
-                url: "<?php echo site_url('sharing/ajax_delete') ?>/" + id,
+                url: "<?php echo site_url('Ik_visual/ajax_delete') ?>/" + id,
                 type: "POST",
                 dataType: "JSON",
                 success: function(data) {
@@ -148,13 +151,13 @@
                     reload_table();
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    alert(textStatus);
+                    alert('Error deleting data');
                 }
             });
         }
     }
 
-    function detail_sharing() {
+    function detail_Ik_visual() {
         save_method = 'add';
         $('#form')[0].reset(); // reset form on modals
         $('.form-group').removeClass('has-error'); // clear error class
@@ -162,4 +165,21 @@
         $('#detail').modal('show'); // show bootstrap modal
         $('.modal-title').text('Detail'); // Set Title to Bootstrap modal title
     }
+
+    // const fieldJenis = $("#jenis");
+    // fieldJenis.change((e) => {
+    //     // console.log(e.target.value);
+    //     let valueJenis = e.target.value;
+    //     if (valueJenis === "ik_visual") {
+    //         $("#field_gambar").removeClass("d-none")
+    //         $("#field_alamat").removeClass("d-none")
+    //         $("#field_file").addClass("d-none")
+    //         // alert("ik_visual")
+    //     } else if (valueJenis === "Ik_visual") {
+    //         $("#field_file").removeClass("d-none")
+    //         $("#field_gambar").addClass("d-none")
+    //         $("#field_alamat").addClass("d-none")
+    //         // alert("Ik_visual")
+    //     }
+    // });
 </script>

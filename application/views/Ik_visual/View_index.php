@@ -41,9 +41,9 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="table-responsive">
-                                    <h3>Sop Data</h3>
+                                    <h3>Ik visual Data</h3>
                                     <br />
-                                    <button class="btn btn-success" onclick="add_sop()"><i class="glyphicon glyphicon-plus"></i> Add sop</button>
+                                    <button class="btn btn-success" onclick="add_Ik_visual()"><i class="glyphicon glyphicon-plus"></i> Add Ik visual</button>
                                     <button class="btn btn-default" onclick="reload_table()"><i class="glyphicon glyphicon-refresh"></i> Reload</button>
                                     <br />
                                     <br />
@@ -51,10 +51,11 @@
                                         <thead>
                                             <tr>
                                                 <th>Judul</th>
-                                                <th>Keterangan</th>
+                                                <th>alamat</th>
                                                 <th>Pengirim</th>
                                                 <th>Kategori</th>
                                                 <th>Waktu</th>
+                                                <th>Kodeunit</th>
                                                 <th style="width:125px;">Action</th>
                                             </tr>
                                         </thead>
@@ -63,10 +64,11 @@
                                         <tfoot>
                                             <tr>
                                                 <th>Judul</th>
-                                                <th>Keterangan</th>
+                                                <th>alamat</th>
                                                 <th>Pengirim</th>
                                                 <th>Kategori</th>
                                                 <th>Waktu</th>
+                                                <th>Kodeunit</th>
                                                 <th>Action</th>
                                             </tr>
                                         </tfoot>
@@ -88,7 +90,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title">From Sop</h3>
+                <h3 class="modal-title">From Ik visual</h3>
             </div>
             <div class="modal-body form">
                 <form action="#" id="form" class="form-horizontal">
@@ -103,7 +105,7 @@
                             </div>
                         </div>
                         <!-- Jenis -->
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label class="control-label col-md-3">Jenis</label>
                             <div class="col-md-9">
                                 <select id="jenis" name="jenis" class="form-control">
@@ -113,7 +115,7 @@
                                 </select>
                                 <span class="help-block"></span>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Kategori -->
                         <div class="form-group">
                             <label class="control-label col-md-3">Kategori</label>
@@ -127,35 +129,27 @@
                                 <span class="help-block"></span>
                             </div>
                         </div>
-                        <!-- Alamat -->
-                        <div id="field_alamat" class="form-group d-none">
-                            <label class="control-label col-md-3">Alamat</label>
-                            <div class="col-md-9">
-                                <input id="alamat" name="alamat" placeholder="alamat" class="form-control" type="text">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
                         <!-- File -->
-                        <div id="field_file" class="form-group">
+                        <!-- <div id="field_file" class="form-group">
                             <label class="control-label col-md-3">File</label>
                             <div class="col-md-9">
                                 <input id="file" name="userfile" placeholder="file" class="form-control" type="file">
                                 <span class="help-block"></span>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Gambar -->
-                        <div id="field_gambar" class="form-group d-none">
+                        <div id="field_gambar" class="form-group">
                             <label class="control-label col-md-3">Gambar</label>
                             <div class="col-md-9">
                                 <input id="gambar" name="usergambar" placeholder="file" class="form-control" type="file">
                                 <span class="help-block"></span>
                             </div>
                         </div>
-                        <!-- Keterangan -->
+                        <!-- alamat -->
                         <div class="form-group">
-                            <label class="control-label col-md-3">Keterangan</label>
+                            <label class="control-label col-md-3">Alamat</label>
                             <div class="col-md-9">
-                                <textarea id="keterangan" name="keterangan" placeholder="keteranagn" class="form-control" style="display: block">
+                                <textarea id="alamat" name="alamat" placeholder="Alamat" class="form-control" style="display: block">
                                 </textarea>
                                 <span class="help-block"></span>
                             </div>
@@ -177,7 +171,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title">From Sharing</h3>
+                <h3 class="modal-title">From Ik visual</h3>
             </div>
             <h1>detail</h1>
         </div><!-- /.modal-content -->
@@ -187,4 +181,4 @@
 
 
 <?php $this->load->view("Komponen/Js") ?>
-<?php $this->load->view("Komponen/Ajax_sop") ?>
+<?php $this->load->view("Komponen/ajax_ikvisual") ?>

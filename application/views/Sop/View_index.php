@@ -92,7 +92,7 @@
             </div>
             <div class="modal-body form">
                 <form action="#" id="form" class="form-horizontal">
-                    <input id="id_sharing" type="hidden" name="id_sharing" />
+                    <input id="id_sop" type="hidden" name="id_sop" />
                     <div class="form-body">
                         <!-- Judul -->
                         <div class="form-group">
@@ -103,7 +103,7 @@
                             </div>
                         </div>
                         <!-- Jenis -->
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label class="control-label col-md-3">Jenis</label>
                             <div class="col-md-9">
                                 <select id="jenis" name="jenis" class="form-control">
@@ -113,7 +113,7 @@
                                 </select>
                                 <span class="help-block"></span>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Kategori -->
                         <div class="form-group">
                             <label class="control-label col-md-3">Kategori</label>
@@ -127,14 +127,6 @@
                                 <span class="help-block"></span>
                             </div>
                         </div>
-                        <!-- Alamat -->
-                        <div id="field_alamat" class="form-group d-none">
-                            <label class="control-label col-md-3">Alamat</label>
-                            <div class="col-md-9">
-                                <input id="alamat" name="alamat" placeholder="alamat" class="form-control" type="text">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
                         <!-- File -->
                         <div id="field_file" class="form-group">
                             <label class="control-label col-md-3">File</label>
@@ -144,13 +136,13 @@
                             </div>
                         </div>
                         <!-- Gambar -->
-                        <div id="field_gambar" class="form-group d-none">
+                        <!-- <div id="field_gambar" class="form-group d-none">
                             <label class="control-label col-md-3">Gambar</label>
                             <div class="col-md-9">
                                 <input id="gambar" name="usergambar" placeholder="file" class="form-control" type="file">
                                 <span class="help-block"></span>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Keterangan -->
                         <div class="form-group">
                             <label class="control-label col-md-3">Keterangan</label>

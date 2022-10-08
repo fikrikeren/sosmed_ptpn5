@@ -153,13 +153,41 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title">From Sharing</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title">Close</h3>
             </div>
-            <h1>detail</h1>
+            <div class="card text-center">
+                <div class="card-body">
+                    <img src="..." class="card-img-top" alt="...">
+                    <a class="card-link" href="">link doc</a>
+                    <a class="card-link" href="">down doc</a>
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p>
+                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Link with href
+                        </a>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Button with data-target
+                        </button>
+                    </p>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div>
+
 
 
 <?php $this->load->view("Komponen/Js") ?>

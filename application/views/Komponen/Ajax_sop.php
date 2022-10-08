@@ -59,7 +59,7 @@
                     $('#judul').val(data.judul)
                     $('#keterangan').val(data.keterangan)
                     $('#kategori').val(data.id_kategori)
-                    $('#gambar').val(data.gambar)
+                    // $('#gambar').val(data.gambar)
                     $('#file').val(data.file)
                     $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
                     $('.modal-title').text('Edit sop'); // Set title to Bootstrap modal title
@@ -104,7 +104,7 @@
         file.append('keterangan', data.get('keterangan'));
         file.append('kategori', data.get('kategori'));
         file.append('userfile', data.get('userfile'));
-        file.append('usergambar', data.get('usergambar'));
+        // file.append('usergambar', data.get('usergambar'));
 
         $.ajax({
             contentType: false,
@@ -163,20 +163,20 @@
         $('.modal-title').text('Detail'); // Set Title to Bootstrap modal title
     }
 
-    const fieldJenis = $("#jenis");
-    fieldJenis.change((e) => {
-        // console.log(e.target.value);
-        let valueJenis = e.target.value;
-        if (valueJenis === "ik_visual") {
-            $("#field_gambar").removeClass("d-none")
-            $("#field_alamat").removeClass("d-none")
-            $("#field_file").addClass("d-none")
-            // alert("ik_visual")
-        } else if (valueJenis === "sop") {
-            $("#field_file").removeClass("d-none")
-            $("#field_gambar").addClass("d-none")
-            $("#field_alamat").addClass("d-none")
-            // alert("sop")
-        }
-    });
+    // const fieldJenis = $("#jenis");
+    // fieldJenis.change((e) => {
+    //     // console.log(e.target.value);
+    //     let valueJenis = e.target.value;
+    //     if (valueJenis === "ik_visual") {
+    //         $("#field_gambar").removeClass("d-none")
+    //         $("#field_alamat").removeClass("d-none")
+    //         $("#field_file").addClass("d-none")
+    //         // alert("ik_visual")
+    //     } else if (valueJenis === "sop") {
+    //         $("#field_file").removeClass("d-none")
+    //         $("#field_gambar").addClass("d-none")
+    //         $("#field_alamat").addClass("d-none")
+    //         // alert("sop")
+    //     }
+    // });
 </script>

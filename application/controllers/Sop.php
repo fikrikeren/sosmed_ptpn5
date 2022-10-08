@@ -13,7 +13,7 @@ class Sop extends CI_Controller
         };
 
         $config['upload_path']          = './Uploads/sop/';
-        $config['allowed_types'] = 'pdf|docx|xls|ppt|PDF|gif|jpg|png';
+        $config['allowed_types'] = 'pdf|docx|xls|ppt|PDF';
 
         $this->load->library('upload', $config);
     }
@@ -65,34 +65,34 @@ class Sop extends CI_Controller
         echo json_encode($output);
     }
 
-    private function do_gambar()
-    {
-        // $config['upload_path']          = './Uploads/';
-        // $config['allowed_types']        = 'gif|jpg|png';
+    // private function do_gambar()
+    // {
+    //     // $config['upload_path']          = './Uploads/';
+    //     // $config['allowed_types']        = 'gif|jpg|png';
 
-        // $this->load->library('upload', $config);
+    //     // $this->load->library('upload', $config);
 
-        if ($this->input->post('id_sop')) {
+    //     if ($this->input->post('id_sop')) {
 
-            $sop = $this->Msop->get_by_id($this->input->post('id_sop'));
+    //         $sop = $this->Msop->get_by_id($this->input->post('id_sop'));
 
-            $path = './Uploads/sop/' . $sop->gambar;
+    //         $path = './Uploads/sop/' . $sop->gambar;
 
-            if (file_exists($path)) {
-                unlink($path);
-            }
-        }
+    //         if (file_exists($path)) {
+    //             unlink($path);
+    //         }
+    //     }
 
-        if (!$this->upload->do_upload('usergambar')) {
-            $error = array('error' => $this->upload->display_errors());
-            return false;
-        } else {
-            // $data = array('upload_data' => $this->upload->data('usergambar'));
-            $data = $this->upload->data('file_name');
-            // $namegambar = $data['file_name'];
-            return $data;
-        }
-    }
+    //     if (!$this->upload->do_upload('usergambar')) {
+    //         $error = array('error' => $this->upload->display_errors());
+    //         return false;
+    //     } else {
+    //         // $data = array('upload_data' => $this->upload->data('usergambar'));
+    //         $data = $this->upload->data('file_name');
+    //         // $namegambar = $data['file_name'];
+    //         return $data;
+    //     }
+    // }
 
     private function do_file()
     {
@@ -142,13 +142,13 @@ class Sop extends CI_Controller
     {
 
         $file = $this->do_file();
-        $gambar = $this->do_gambar();
+        // $gambar = $this->do_gambar();
 
         $data = array(
             'judul' => $this->input->post('judul'),
             'keterangan' => $this->input->post('keterangan'),
             'sap' => $this->session->get_userdata('user')['user'],
-            'gambar' => $gambar,
+            // 'gambar' => $gambar,
             'file' => $file,
             'id_kategori' => $this->input->post('kategori'),
         );
@@ -165,20 +165,18 @@ class Sop extends CI_Controller
     {
         if ($this->session->userdata('access') != 'superadmin' && $this->session->userdata('access') != 'admin') {
             $url = base_url('sop');
-            // var_dump($url);
-            // die;
             header('Content-Type: application/json');
             echo json_encode($url);
             return;
         };
 
         $file = $this->do_file();
-        $gambar = $this->do_gambar();
+        // $gambar = $this->do_gambar();
 
         $data = array(
             'judul' => $this->input->post('judul'),
             'keterangan' => $this->input->post('keterangan'),
-            'gambar'  => $gambar,
+            // 'gambar'  => $gambar,
             'file'  => $file,
             'id_kategori' => $this->input->post('kategori'),
 
@@ -203,16 +201,16 @@ class Sop extends CI_Controller
         // $path_file = './Uploads/datasop/' . $sop->file;
         // $path_gambar = './Uploads/datasop/' . $sop->gambar;
         $path_file = './Uploads/sop/' .  $sop->file;
-        $path_gambar = './Uploads/sop/' . $sop->gambar;
+        // $path_gambar = './Uploads/sop/' . $sop->gambar;
 
 
         if ($sop->file != null && file_exists($path_file)) {
             unlink($path_file);
         }
 
-        if ($sop->gambar != null && file_exists($path_gambar)) {
-            unlink($path_gambar);
-        }
+        // if ($sop->gambar != null && file_exists($path_gambar)) {
+        //     unlink($path_gambar);
+        // }
 
         $this->Msop->delete_by_id($id);
 

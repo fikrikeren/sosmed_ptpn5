@@ -154,12 +154,34 @@
         }
     }
 
-    function detail_sharing() {
+    function detail_sharing(id) {
         save_method = 'add';
         $('#form')[0].reset(); // reset form on modals
         $('.form-group').removeClass('has-error'); // clear error class
         $('.help-block').empty(); // clear error string
         $('#detail').modal('show'); // show bootstrap modal
-        $('.modal-title').text('Detail'); // Set Title to Bootstrap modal title
+        $('.modal-title').text('Close');
+
+        //Ajax Load data from ajax
+        $.ajax({
+            url: "<?php echo site_url('Sharing/ajax_edit/') ?>/" + id,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data) {
+
+                $('#id_sharing').val(data.id_sharing)
+                $('#judul').val(data.judul)
+                $('#keterangan').val(data.keterangan)
+                $('#kategori').val(data.id_kategori)
+                $('#gambar').val(data.gambar)
+                $('#file').val(data.file)
+                $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
+                $('.modal-title').text('Edit sharing'); // Set title to Bootstrap modal title
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Error get data from ajax');
+            }
+        }); // Set Title to Bootstrap modal title
     }
 </script>

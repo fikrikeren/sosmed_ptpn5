@@ -124,8 +124,6 @@ class Sharing extends CI_Controller
             $this->session->userdata('access') != 'admin'
         ) {
             $url = base_url('Sharing');
-            // var_dump($url);
-            // die;
             header('Content-Type: application/json');
             echo json_encode($url);
             return;
@@ -146,11 +144,11 @@ class Sharing extends CI_Controller
             'judul' => $this->input->post('judul'),
             'keterangan' => $this->input->post('keterangan'),
             'sap' => $this->session->get_userdata('user')['user'],
+            'kodeunit' => $this->session->get_userdata('user')['kodeunit'],
             'gambar' => $gambar,
             'file' => $file,
             'id_kategori' => $this->input->post('kategori'),
         );
-
         header('Content-Type: application/json');
         if ($this->Msharing->save($data)) {
             echo json_encode(array("status" => TRUE));

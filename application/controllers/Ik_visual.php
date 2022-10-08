@@ -95,8 +95,6 @@ class Ik_visual extends CI_Controller
         }
     }
 
-
-
     public function ajax_edit($id)
     {
         // harus kedua-nya false
@@ -172,22 +170,26 @@ class Ik_visual extends CI_Controller
     public function ajax_delete($id)
     {
         $ik = $this->Mik_visual->get_by_id($id);
-        var_dump($this->Mik_visual);
-        die;
-        if ($ik->sap && $ik->sap !== $this->session->get_userdata('user')['user']) {
-            header('Content-Type: application/json');
-            echo json_encode(array("status" => FALSE, "massage" => "bukan data anda"));
 
-            return;
-        };
-
+        // ? superadmin, bisa hapus semua data
+        // ? admin, bisa hapus semua data
+        // ? user, hanya bisa menghapus data sendiri
+        if ($this->session->userdata('access') === "user") {
+            // * Check apakah data yang dihapus milik user tersebut
+            // * Jika tidak, lempar error
+            if ($ik->sap && $ik->sap !== $this->session->get_userdata('user')['user']) {
+                header('Content-Type: application/json');
+                echo json_encode(array("status" => FALSE, "massage" => "bukan data anda"));
+                return;
+            };
+        }
 
         // $path_file = './Uploads/data_ikvisual/' . $ik->file;
         // $path_gambar = './Uploads/data_ikvisual/' . $ik->gambar;
-        $path_gambar = './Uploads/sop/' . $ik->gambar;
+        $path_thumbnail = './Uploads/sop/' . $ik->thumbnail;
 
-        if ($ik->gambar != null && file_exists($path_gambar)) {
-            unlink($path_gambar);
+        if ($ik->thumbnail != null && file_exists($path_thumbnail)) {
+            unlink($path_thumbnail);
         }
 
         $this->Mik_visual->delete_by_id($id);

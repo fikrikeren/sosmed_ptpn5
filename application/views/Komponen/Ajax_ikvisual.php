@@ -78,61 +78,70 @@
     }
 
     function save() {
-        $('#btnSave').text('saving...'); //change button text
-        $('#btnSave').attr('disabled', true); //set button disable
+        // * Atas
+        try {
+            // * Atas
+            $('#btnSave').text('saving...'); //change button text
+            $('#btnSave').attr('disabled', true); //set button disable
 
-        // ajax adding data to database
-        let formdata = document.querySelector('#form');
-        let data = new FormData(formdata);
-        // console.log(data)
-        let file = new FormData();
-
-        var url;
-
-        if (save_method == 'add') {
-
-            url = "<?php echo site_url('Ik_visual/ajax_add') ?>";
-        } else {
-
-            <?php if ($this->session->userdata('access') == 'superadmin' || $this->session->userdata('access') == 'admin') { ?>
-                url = "<?php echo site_url('Ik_visual/ajax_update') ?>";
-                file.append('id_ik', data.get('id_ik'));
-            <?php } ?>
-        }
-
-
-
-        file.append('judul', data.get('judul'));
-        file.append('alamat', data.get('alamat'));
-        // file.append('keterangan', data.get('keterangan'));
-        file.append('kategori', data.get('kategori'));
-        // file.append('userfile', data.get('userfile'));
-        file.append('usergambar', data.get('usergambar'));
-
-        $.ajax({
-            contentType: false,
-            processData: false,
-            url: url,
-            type: "POST",
-            data: file,
-            // dataType: "JSON",
-            success: function(data) {
-                if (data.status) //if success close modal and reload ajax table
-                {
-                    $('#modal_form').modal('hide');
-                    reload_table();
-                }
-
-                $('#btnSave').text('save'); //change button text
-                $('#btnSave').attr('disabled', false); //set button enable
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                alert('Error adding / update data');
-                $('#btnSave').text('save'); //change button text
-                $('#btnSave').attr('disabled', false); //set button enable
-
+            // Validasi
+            // * Judul
+            if ($('#judul').val() === "") {
+                throw new Error("Judul harus diisi");
             }
-        });
+
+            // ajax adding data to database
+            let formdata = document.querySelector('#form');
+            let data = new FormData(formdata);
+            let file = new FormData();
+
+            var url;
+
+            if (save_method == 'add') {
+                url = "<?php echo site_url('Ik_visual/ajax_add') ?>";
+            } else {
+
+                <?php if ($this->session->userdata('access') == 'superadmin' || $this->session->userdata('access') == 'admin') { ?>
+                    url = "<?php echo site_url('Ik_visual/ajax_update') ?>";
+                    file.append('id_ik', data.get('id_ik'));
+                <?php } ?>
+            }
+
+            file.append('judul', data.get('judul'));
+            file.append('alamat', data.get('alamat'));
+            // file.append('keterangan', data.get('keterangan'));
+            file.append('kategori', data.get('kategori'));
+            // file.append('userfile', data.get('userfile'));
+            file.append('usergambar', data.get('usergambar'));
+
+            $.ajax({
+                contentType: false,
+                processData: false,
+                url: url,
+                type: "POST",
+                data: file,
+                // dataType: "JSON",
+                success: function(data) {
+                    if (data.status) //if success close modal and reload ajax table
+                    {
+                        $('#modal_form').modal('hide');
+                        reload_table();
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert('Error adding / update data');
+                }
+            });
+
+            // * bawah
+        } catch (error) {
+            alert(error);
+        } finally {
+            // change button back
+            $('#btnSave').text('save'); //change button text
+            $('#btnSave').attr('disabled', false); //set button enable
+        }
+        // * Bawah
     }
 
     function Delete_Ik_visual(id) {

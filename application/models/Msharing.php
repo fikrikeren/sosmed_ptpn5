@@ -74,7 +74,10 @@ class Msharing extends CI_Model
 
     public function get_by_id($id)
     {
+        $this->db->select($this->table . ".*, user.nama, kategori.nama_kategori");
         $this->db->from($this->table);
+        $this->db->join('user', 'sharing.sap = user.sap', 'left');
+        $this->db->join('kategori', 'sharing.id_kategori = kategori.id_kategori', 'left');
         $this->db->where('id_sharing', $id);
         $query = $this->db->get();
 

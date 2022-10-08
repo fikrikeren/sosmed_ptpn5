@@ -160,28 +160,48 @@
             </div>
             <div class="card text-center">
                 <div class="card-body">
-                    <img src="..." class="card-img-top" alt="...">
-                    <a class="card-link" href="">link doc</a>
-                    <a class="card-link" href="">down doc</a>
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p>
-                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            Link with href
-                        </a>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            Button with data-target
-                        </button>
-                    </p>
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class=" h-75 w-75 position-relative">
+                                <img id="detail-gambar" src="#" class="card-img-top" />
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <a id="detail-download-gambar" target="_blank" class="card-link" href="#">Download gambar</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a id="detail-download-file" target="_blank" class="card-link" href="#">Download document (file)</a>
+                        </li>
+                        <li class="list-group-item">
+                            <h5 id="detail-judul" class="card-title">Ini Judul</h5>
+                        </li>
+                        <li class="list-group-item">
+                            <p id="detail-keterangan" class="card-text">Ini keterangan</p>
+                        </li>
+                        <li class="list-group-item">
+                            <p id="detail-pengirim" class="card-text">Ini Pengirim</p>
+                        </li>
+                        <li class="list-group-item">
+                            <p id="detail-kategori" class="card-text">Ini kategori</p>
+                        </li>
+                        <li class="list-group-item">
+                            <p id="detail-waktu" class="card-text">Ini waktu</p>
+                        </li>
+                        <!-- View more -->
+                        <div class="collapse" id="collapseExample">
+                            <li class="list-group-item">
+                                <p id="detail-kode-unit" class="card-text">Ini kode unit</p>
+                            </li>
+                            <li class="list-group-item">
+                                <p id="detail-sap" class="card-text">Ini sap</p>
+                            </li>
                         </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                        <li class="list-group-item">
+                            <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                view more...
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div><!-- /.modal-content -->

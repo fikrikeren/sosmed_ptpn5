@@ -12,7 +12,7 @@ class Ik_visual extends CI_Controller
             redirect($url);
         };
 
-        $config['upload_path']          = './Uploads/sop/';
+        $config['upload_path']          = './Uploads/ik_visual/';
         $config['allowed_types'] = 'gif|jpg|png';
 
         $this->load->library('upload', $config);
@@ -77,7 +77,7 @@ class Ik_visual extends CI_Controller
 
             $sop = $this->Mik_visual->get_by_id($this->input->post('id_sop'));
 
-            $path = './Uploads/sop/' . $sop->gambar;
+            $path = './Uploads/ik_visual/' . $sop->gambar;
 
             if (file_exists($path)) {
                 unlink($path);
@@ -119,13 +119,13 @@ class Ik_visual extends CI_Controller
     {
 
         $gambar = $this->do_gambar();
-
         $data = array(
             'judul' => $this->input->post('judul'),
             'alamat' => $this->input->post('alamat'),
             // 'keterangan' => $this->input->post('keterangan'),
             'sap' => $this->session->get_userdata('user')['user'],
             'thumbnail' => $gambar,
+            // 'kodeunit' => $this->session->get_userdata('user')['kodeunit'],
             'id_kategori' => $this->input->post('kategori'),
         );
 
@@ -186,7 +186,7 @@ class Ik_visual extends CI_Controller
 
         // $path_file = './Uploads/data_ikvisual/' . $ik->file;
         // $path_gambar = './Uploads/data_ikvisual/' . $ik->gambar;
-        $path_thumbnail = './Uploads/sop/' . $ik->thumbnail;
+        $path_thumbnail = './Uploads/ik_visual/' . $ik->thumbnail;
 
         if ($ik->thumbnail != null && file_exists($path_thumbnail)) {
             unlink($path_thumbnail);

@@ -74,6 +74,8 @@ class Mik_visual extends CI_Model
     public function get_by_id($id)
     {
         $this->db->from($this->table);
+        $this->db->join('user', 'ik_visual.sap = user.sap', 'left');
+        $this->db->join('kategorisop', 'ik_visual.id_kategori = kategorisop.id_kategori', 'left');
         $this->db->where('id_ik', $id);
         $query = $this->db->get();
 

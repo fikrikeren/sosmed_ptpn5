@@ -12,6 +12,8 @@ class Sharing extends CI_Controller
             redirect($url);
         };
 
+
+
         $config['upload_path']          = './Uploads/sharing';
         $config['allowed_types'] = 'pdf|docx|xls|ppt|PDF|gif|jpg|png';
 
@@ -144,10 +146,11 @@ class Sharing extends CI_Controller
             'judul' => $this->input->post('judul'),
             'keterangan' => $this->input->post('keterangan'),
             'sap' => $this->session->get_userdata('user')['user'],
-            'kodeunit' => $this->session->get_userdata('user')['kodeunit'],
+            // 'kodeunit' => $this->session->get_userdata('user')['kodeunit'],
             'gambar' => $gambar,
             'file' => $file,
             'id_kategori' => $this->input->post('kategori'),
+
         );
         header('Content-Type: application/json');
         if ($this->Msharing->save($data)) {

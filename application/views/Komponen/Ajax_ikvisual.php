@@ -166,13 +166,36 @@
         }
     }
 
-    function detail_Ik_visual() {
+    function detail_Ik_visual(id) {
         save_method = 'add';
         $('#form')[0].reset(); // reset form on modals
         $('.form-group').removeClass('has-error'); // clear error class
         $('.help-block').empty(); // clear error string
         $('#detail').modal('show'); // show bootstrap modal
-        $('.modal-title').text('Detail'); // Set Title to Bootstrap modal title
+        $('.modal-title').text('Close');
+
+        //Ajax Load data from ajax
+        $.ajax({
+            url: "<?php echo site_url('Ik_visual/ajax_edit/') ?>/" + id,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data) {
+                $('#detail-gambar').attr("src", "<?= site_url("Uploads/ik_visual/") ?>" + data.thumbnail);
+                $('#detail-download-gambar').attr("href", "<?= site_url("Uploads/ik_visual/") ?>" + data.thumbnail);
+                $('#detail-judul').text("Judul : " + data.judul)
+                $('#detail-pengirim').text("Pengirim : " + data.nama)
+                $('#detail-kategori').text("Kategori : " + data.nama_kategori)
+                $('#detail-waktu').text("Waktu : " + data.waktu)
+                $('#detail-kode-unit').text("Kode unit : " + data.kodeunit)
+                $('#detail-sap').text("SAP : " + data.sap)
+                // $('#gambar').val(data.gambar)
+                // $('#file').val(data.file)
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('Error get data from ajax');
+            }
+        }); // Set Title to Bootstrap modal title
     }
 
     // const fieldJenis = $("#jenis");

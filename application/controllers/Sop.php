@@ -48,7 +48,7 @@ class Sop extends CI_Controller
                 $action .= '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_sop(' . "'" . $datasop->id_sop . "'" . ')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
             }
             $action .= '<a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="Delete_sop(' . "'" . $datasop->id_sop . "'" . ')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
-            $action .= '<a class="btn btn-sm btn-warning" href="javascript:void(0)" title="Detail" onclick="detail_sop(' . "'" . $datasop->id_sop . "'" . ')"><i class="glyphicon glyphicon-trash"></i> Detail</a>';
+            $action .= '<a class="btn btn-sm btn-warning" href="javascript:void(0)" title="Detail" onclick=" detail_Sop(' . "'" . $datasop->id_sop . "'" . ')"><i class="glyphicon glyphicon-trash"></i> Detail</a>';
 
             $row[] = $action;
 

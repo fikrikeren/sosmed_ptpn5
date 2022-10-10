@@ -168,10 +168,49 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title">From Sharing</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title">Close</h3>
             </div>
-            <h1>detail</h1>
+            <div class="card text-center">
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a id="detail-download-file" target="_blank" class="card-link" href="#">Download document (file)</a>
+                        </li>
+                        <li class="list-group-item">
+                            <h5 id="detail-judul" class="card-title">Ini Judul</h5>
+                        </li>
+                        <li class="list-group-item">
+                            <p id="detail-keterangan" class="card-text">Ini keterangan</p>
+                        </li>
+                        <li class="list-group-item">
+                            <p id="detail-pengirim" class="card-text">Ini Pengirim</p>
+                        </li>
+                        <li class="list-group-item">
+                            <p id="detail-kategori" class="card-text">Ini kategori</p>
+                        </li>
+                        <li class="list-group-item">
+                            <p id="detail-waktu" class="card-text">Ini waktu</p>
+                        </li>
+                        <!-- View more -->
+                        <div class="collapse" id="collapseExample">
+                            <li class="list-group-item">
+                                <p id="detail-kode-unit" class="card-text">Ini kode unit</p>
+                            </li>
+                            <li class="list-group-item">
+                                <p id="detail-sap" class="card-text">Ini sap</p>
+                            </li>
+                        </div>
+                        <li class="list-group-item">
+                            <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                view more...
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div>

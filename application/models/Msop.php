@@ -74,7 +74,10 @@ class Msop extends CI_Model
 
     public function get_by_id($id)
     {
+        $this->db->select($this->table . ".*, user.nama, kategorisop.nama_kategori");
         $this->db->from($this->table);
+        $this->db->join('user', 'sop.sap = user.sap', 'left');
+        $this->db->join('kategorisop', 'sop.id_kategori = kategorisop.id_kategori', 'left');
         $this->db->where('id_sop', $id);
         $query = $this->db->get();
 

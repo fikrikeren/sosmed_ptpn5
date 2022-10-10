@@ -31,6 +31,7 @@ class Auth extends CI_Controller
 				if ($x['user_status'] == '0') {
 					$this->session->set_userdata('logged', TRUE);
 					$this->session->set_userdata('user', $sap);
+					
 					$id = $x['id'];
 					if ($x['level'] == '1') { //superadmin
 						$name = $x['nama'];

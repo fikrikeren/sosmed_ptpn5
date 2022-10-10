@@ -178,9 +178,9 @@
             success: function(data) {
                 // console.log(data);
                 // $('#id_sharing').val(data.id_sharing)
-                $('#detail-gambar').attr("src", "<?= site_url("Uploads/sop/") ?>" + data.gambar);
-                $('#detail-download-gambar').attr("href", "<?= site_url("Uploads/sop/") ?>" + data.gambar);
-                $('#detail-download-file').attr("href", "<?= site_url("Uploads/sop/") ?>" + data.file);
+                $('#detail-gambar').attr("src", "<?= site_url("Uploads/Sharing/") ?>" + data.gambar);
+                $('#detail-download-gambar').attr("href", "<?= site_url("Uploads/Sharing/") ?>" + data.gambar);
+                $('#detail-download-file').attr("href", "<?= site_url("Uploads/Sharing/") ?>" + data.file);
                 $('#detail-judul').text("Judul : " + data.judul)
                 $('#detail-keterangan').text("Keterangan : " + data.keterangan)
                 $('#detail-pengirim').text("Pengirim : " + data.nama)

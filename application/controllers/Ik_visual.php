@@ -103,13 +103,18 @@ class Ik_visual extends CI_Controller
             $this->session->userdata('access') != 'admin'
         ) {
             $url = base_url('sop');
-            // var_dump($url);
-            // die;
             header('Content-Type: application/json');
             echo json_encode($url);
             return;
         };
 
+        $data = $this->Mik_visual->get_by_id($id);
+
+        echo json_encode($data);
+    }
+
+    public function Ajax_detail($id)
+    {
         $data = $this->Mik_visual->get_by_id($id);
 
         echo json_encode($data);
@@ -125,7 +130,7 @@ class Ik_visual extends CI_Controller
             // 'keterangan' => $this->input->post('keterangan'),
             'sap' => $this->session->get_userdata('user')['user'],
             'thumbnail' => $gambar,
-            // 'kodeunit' => $this->session->get_userdata('user')['kodeunit'],
+            'kodeunit' => $this->session->userdata('kodeunit'),
             'id_kategori' => $this->input->post('kategori'),
         );
 
@@ -174,6 +179,7 @@ class Ik_visual extends CI_Controller
         // ? superadmin, bisa hapus semua data
         // ? admin, bisa hapus semua data
         // ? user, hanya bisa menghapus data sendiri
+
         if ($this->session->userdata('access') === "user") {
             // * Check apakah data yang dihapus milik user tersebut
             // * Jika tidak, lempar error

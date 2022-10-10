@@ -172,7 +172,7 @@
 
         //Ajax Load data from ajax
         $.ajax({
-            url: "<?php echo site_url('Sop/ajax_edit/') ?>/" + id,
+            url: "<?php echo site_url('Sop/Ajax_detail/') ?>/" + id,
             type: "GET",
             dataType: "JSON",
             success: function(data) {

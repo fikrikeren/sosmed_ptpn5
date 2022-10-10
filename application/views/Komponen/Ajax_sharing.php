@@ -81,6 +81,12 @@
             $('#btnSave').text('saving...'); //change button text
             $('#btnSave').attr('disabled', true); //set button disable
 
+            // Validasi
+            // * Judul
+            if ($('#judul').val() === "") {
+                throw new Error("Judul harus diisi");
+            }
+
             // ajax adding data to database
             let formdata = document.querySelector('#form');
             let data = new FormData(formdata);
@@ -131,6 +137,7 @@
 
                 }
             });
+            
         } catch (error) {
             alert(error);
         } finally {
@@ -172,7 +179,7 @@
 
         //Ajax Load data from ajax
         $.ajax({
-            url: "<?php echo site_url('Sharing/ajax_edit/') ?>/" + id,
+            url: "<?php echo site_url('Sharing/Ajax_detail/') ?>/" + id,
             type: "GET",
             dataType: "JSON",
             success: function(data) {

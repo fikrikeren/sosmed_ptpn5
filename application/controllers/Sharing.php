@@ -5,6 +5,7 @@ class Sharing extends CI_Controller
 {
     function __construct()
     {
+
         parent::__construct();
         $this->load->model('Msharing');
         if ($this->session->userdata('logged') != TRUE) {
@@ -136,6 +137,14 @@ class Sharing extends CI_Controller
         echo json_encode($data);
     }
 
+    // detail user
+    public function Ajax_detail($id)
+    {
+        $data = $this->Msharing->get_by_id($id);
+
+        echo json_encode($data);
+    }
+
     public function ajax_add()
     {
 
@@ -146,7 +155,7 @@ class Sharing extends CI_Controller
             'judul' => $this->input->post('judul'),
             'keterangan' => $this->input->post('keterangan'),
             'sap' => $this->session->get_userdata('user')['user'],
-            // 'kodeunit' => $this->session->get_userdata('user')['kodeunit'],
+            'kodeunit' => $this->session->userdata('kodeunit'),
             'gambar' => $gambar,
             'file' => $file,
             'id_kategori' => $this->input->post('kategori'),
@@ -192,12 +201,15 @@ class Sharing extends CI_Controller
     {
         $sharing = $this->Msharing->get_by_id($id);
 
-        if ($sharing->sap !== $this->session->get_userdata('user')['user']) {
-            header('Content-Type: application/json');
-            echo json_encode(array("status" => FALSE, "massage" => "bukan data anda"));
-
-            return;
-        };
+        if ($this->session->userdata('access') === "user") {
+            // * Check apakah data yang dihapus milik user tersebut
+            // * Jika tidak, lempar error
+            if ($sharing->sap && $sharing->sap !== $this->session->get_userdata('user')['user']) {
+                header('Content-Type: application/json');
+                echo json_encode(array("status" => FALSE, "massage" => "bukan data anda"));
+                return;
+            };
+        }
 
         // $path_file = './Uploads/data_sharing/' . $sharing->file;
         // $path_gambar = './Uploads/data_sharing/' . $sharing->gambar;

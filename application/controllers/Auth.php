@@ -28,25 +28,21 @@ class Auth extends CI_Controller
 			$validate_ps = $this->Mlogin->query_validasi_password($sap, $password);
 			if ($validate_ps->num_rows() > 0) {
 				$user = $validate_ps->row_array();
-				if ($user['user_status'] == '0') {
-					$this->session->set_userdata('logged', TRUE);
-					$this->session->set_userdata('user', $sap);
-					$this->session->set_userdata('id',  $user['id']);
-					$this->session->set_userdata('nama', $user['nama']);
-					$this->session->set_userdata('kodeunit', $user['kodeunit']);
+				$this->session->set_userdata('logged', TRUE);
+				$this->session->set_userdata('user', $sap);
+				$this->session->set_userdata('id',  $user['id']);
+				$this->session->set_userdata('nama', $user['nama']);
+				$this->session->set_userdata('kodeunit', $user['kodeunit']);
 
-					if ($user['level'] == '1') { //superadmin
-						$this->session->set_userdata('access', 'superadmin');
-					} else if ($user['level'] == '2') { //admin
-						$this->session->set_userdata('access', 'admin');
-					} else { //user
-						$this->session->set_userdata('access', 'user');
-					}
-
-					redirect('home');
-				} else {
-					redirect('Auth');
+				if ($user['level'] == '1') { //superadmin
+					$this->session->set_userdata('access', 'superadmin');
+				} else if ($user['level'] == '2') { //admin
+					$this->session->set_userdata('access', 'admin');
+				} else { //user
+					$this->session->set_userdata('access', 'user');
 				}
+
+				redirect('home');
 			} else {
 				redirect('Auth');
 			}

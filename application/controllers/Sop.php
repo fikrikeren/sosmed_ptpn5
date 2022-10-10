@@ -138,6 +138,14 @@ class Sop extends CI_Controller
         echo json_encode($data);
     }
 
+    // detail user
+    public function Ajax_detail($id)
+    {
+        $data = $this->Msop->get_by_id($id);
+
+        echo json_encode($data);
+    }
+
     public function ajax_add()
     {
 
@@ -148,6 +156,7 @@ class Sop extends CI_Controller
             'judul' => $this->input->post('judul'),
             'keterangan' => $this->input->post('keterangan'),
             'sap' => $this->session->get_userdata('user')['user'],
+            'kodeunit' => $this->session->userdata('kodeunit'),
             // 'gambar' => $gambar,
             'file' => $file,
             'id_kategori' => $this->input->post('kategori'),
@@ -190,12 +199,16 @@ class Sop extends CI_Controller
     public function ajax_delete($id)
     {
         $sop = $this->Msop->get_by_id($id);
-        if ($sop->sap !== $this->session->get_userdata('user')['user']) {
-            header('Content-Type: application/json');
-            echo json_encode(array("status" => FALSE, "massage" => "bukan data anda"));
 
-            return;
-        };
+        if ($this->session->userdata('access') === "user") {
+            // * Check apakah data yang dihapus milik user tersebut
+            // * Jika tidak, lempar error
+            if ($sop->sap && $sop->sap !== $this->session->get_userdata('user')['user']) {
+                header('Content-Type: application/json');
+                echo json_encode(array("status" => FALSE, "massage" => "bukan data anda"));
+                return;
+            };
+        }
 
 
         // $path_file = './Uploads/datasop/' . $sop->file;

@@ -176,7 +176,7 @@
 
         //Ajax Load data from ajax
         $.ajax({
-            url: "<?php echo site_url('Ik_visual/ajax_edit/') ?>/" + id,
+            url: "<?php echo site_url('Ik_visual/Ajax_detail') ?>/" + id,
             type: "GET",
             dataType: "JSON",
             success: function(data) {

@@ -101,4 +101,9 @@ class Mik_visual extends CI_Model
         $this->db->where('id_ik', $id);
         $this->db->delete($this->table);
     }
+
+    public function get_all_ik_visual()
+    {
+        return $this->db->count_all_results("ik_visual");
+    }
 }

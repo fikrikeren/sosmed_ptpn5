@@ -102,4 +102,8 @@ class Msop extends CI_Model
         $this->db->where('id_sop', $id);
         $this->db->delete($this->table);
     }
+    public function get_all_sop()
+    {
+        return $this->db->count_all_results("sop");
+    }
 }

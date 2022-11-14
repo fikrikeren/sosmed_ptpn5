@@ -9,7 +9,7 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => '12345',
+	'password' => '',
 	'database' => 'ci',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
@@ -26,3 +26,4 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+

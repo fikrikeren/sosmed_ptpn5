@@ -137,7 +137,6 @@
 
                 }
             });
-            
         } catch (error) {
             alert(error);
         } finally {

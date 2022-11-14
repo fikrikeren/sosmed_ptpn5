@@ -15,4 +15,9 @@ class Mlogin extends CI_Model
         $result = $this->db->query("SELECT * FROM user WHERE sap='$sap' and password='$password' LIMIT 1");
         return $result;
     }
+
+    public function get_all_users()
+    {
+        return $this->db->count_all_results("user");
+    }
 }
